@@ -31,12 +31,15 @@ public class PesquisaEventoControl {
     private EventoDao eventoDao;
      private EnderecoDao enderecoDao;
      private Endereco endereco;
+     private Evento evento;
 
     public PesquisaEventoControl(Activity activity) {
         this.activity = activity;
 
-        endereco = new Endereco();
         eventoDao = new EventoDao(activity);
+
+//        evento = (Evento) activity.getIntent().getSerializableExtra(Constantes.PARAM_EVENTO);
+
         initComponents();
 
 //        carregarEventos();
@@ -45,11 +48,12 @@ public class PesquisaEventoControl {
     private void initComponents() {
         lvEventos = activity.findViewById(R.id.lvEventos);
         configListViewEvento();
+        carregarEventos();
     }
 
     public void carregarEventos() {
         AsyncHttpClient client = new AsyncHttpClient();
-        String URL = "https://api.hgbrasil.com/weather?woeid=455861";
+        String URL = "http://192.168.0.1:8080/GerenciarEvento/api/evento";
         client.get(URL, new AsyncHttpResponseHandler() {
             @Override
             public void onStart() {
@@ -108,18 +112,18 @@ public class PesquisaEventoControl {
 
 
 
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (resultCode == activity.RESULT_OK) {
-            if (requestCode == Constantes.REQUEST_EVENTO) {
-                Evento evento = (Evento) data.getSerializableExtra(Constantes.PARAM_EVENTO);
-
-//                comanda.getColecaoItemComanda();
-//                adapterEventos.add((Evento) comanda.getColecaoItemComanda());
-                adapterEventos.add(evento);
-                adapterEventos.notifyDataSetChanged();
-            }
-        }
-    }
+//    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        if (resultCode == activity.RESULT_OK) {
+//            if (requestCode == Constantes.REQUEST_EVENTO) {
+//                Evento evento = (Evento) data.getSerializableExtra(Constantes.PARAM_EVENTO);
+//
+////                comanda.getColecaoItemComanda();
+////                adapterEventos.add((Evento) comanda.getColecaoItemComanda());
+//                adapterEventos.add(evento);
+//                adapterEventos.notifyDataSetChanged();
+//            }
+//        }
+//    }
 
 
 }

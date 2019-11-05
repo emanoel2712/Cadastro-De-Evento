@@ -12,64 +12,254 @@
         android:layout_height="wrap_content"
         android:text="Cadastro de Evento"
         android:textAlignment="center"
-        android:textSize="20dp" />
+        android:textSize="30dp" />
 
 
-    <EditText
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Nome"
-        android:inputType="text"
-        android:id="@+id/editNome"/>
+        android:orientation="vertical">
 
-    <EditText
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="192dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:text="Nome: "
+
+                />
+
+            <TextView
+                android:text="Data: "
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="1"/>
+            />
+
+        </LinearLayout>-
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+
+                android:id="@+id/editNome"
+                android:layout_width="192dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:hint="Digite o nome do evento"
+                android:inputType="text" />
+
+
+            <EditText
+
+                android:id="@+id/editData"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:hint="Data"
+                android:inputType="date" />
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Data"
-        android:inputType="date"
-        android:id="@+id/editData"/>
+        android:orientation="vertical">
 
-    <EditText
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="192dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:text="Estado: "
+                />
+
+            <TextView
+                android:text="Cidade: "
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="6"/>
+            />
+
+        </LinearLayout>-
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+
+                android:id="@+id/editEstado"
+                android:layout_width="192dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:hint="Digite o estado"
+                android:inputType="text" />
+
+
+            <EditText
+
+                android:id="@+id/editCidade"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="6"
+                android:hint="Digite a cidade"
+                android:inputType="date" />
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Estado"
-        android:id="@+id/editEstado"/>
+        android:orientation="vertical">
 
-    <EditText
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="192dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:text="Bairro: "
+                />
+
+            <TextView
+                android:text="Cep: "
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="6"/>
+            />
+
+        </LinearLayout>-
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+
+                android:id="@+id/editBairro"
+                android:layout_width="192dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:hint="Digite o bairro"
+                android:inputType="text" />
+
+
+            <EditText
+
+                android:id="@+id/editCep"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="6"
+                android:hint="Digite o cep"
+                android:inputType="number" />
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Cidade"
-        android:id="@+id/editCidade"/>
+        android:orientation="vertical">
 
-    <EditText
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="192dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:text="Logradouro: "
+                />
+
+            <TextView
+                android:text="Numero: "
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="1"/>
+            />
+
+        </LinearLayout>-
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+
+                android:id="@+id/editLogradouro"
+                android:layout_width="192dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:hint="Digite o logradouro"
+                android:inputType="text" />
+
+
+            <EditText
+
+                android:id="@+id/editNumero"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:hint="N"
+                android:inputType="number" />
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Bairro"
-        android:id="@+id/editBairro"/>
+        android:text="Insira a foto: "
 
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Cep"
-        android:id="@+id/editCep"/>
-
-
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Logradouro"
-        android:inputType="text"
-        android:id="@+id/editLogradouro"/>
-
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Número"
-        android:id="@+id/editNumero"/>
-
+        />
 
 
 

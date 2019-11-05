@@ -32,12 +32,9 @@ public class Endereco implements Serializable {
     @DatabaseField(columnName = "numero")
     private String numero;
 
-//    @ForeignCollectionField(eager = true)
-//    private Collection<Evento> colecaoEvento;
-
     public Endereco() {
-//        colecaoEvento = new ArrayList<>();
     }
+
 
     public Endereco(String estado, String cidade, String bairro, String cep, String logradouro, String numero) {
         this.estado = estado;

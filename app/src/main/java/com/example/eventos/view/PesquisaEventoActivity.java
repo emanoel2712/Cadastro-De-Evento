@@ -16,18 +16,19 @@ public class PesquisaEventoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pesquisa_evento);
         control = new PesquisaEventoControl(this);
+        control.carregarEventos();
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        control.configListViewEvento();
-    }
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//        control.configListViewEvento();
+//    }
 
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        control.onActivityResult(requestCode, resultCode, data);
-    }
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        control.onActivityResult(requestCode, resultCode, data);
+//    }
 }
