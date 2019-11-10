@@ -11,7 +11,7 @@ public class Foto implements Serializable {
     @DatabaseField(allowGeneratedIdInsert = true, generatedId = true)
     private Integer id;
 
-    @DatabaseField(columnName = "caminho", canBeNull = false)
+    @DatabaseField(columnName = "caminho")
     private String caminho;
 
     public Foto() {

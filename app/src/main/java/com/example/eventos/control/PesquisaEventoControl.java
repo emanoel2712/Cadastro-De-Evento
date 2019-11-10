@@ -8,9 +8,10 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.eventos.R;
+import com.example.eventos.dao.EnderecoDao;
+import com.example.eventos.dao.EventoDao;
 import com.example.eventos.model.DTO.EventoDTO;
-import com.example.eventos.model.dao.EnderecoDao;
-import com.example.eventos.model.dao.EventoDao;
+
 import com.example.eventos.model.entidade.Endereco;
 import com.example.eventos.model.entidade.Evento;
 import com.example.eventos.util.Constantes;
@@ -25,20 +26,24 @@ import java.util.List;
 
 public class PesquisaEventoControl {
     private Activity activity;
+
     private ListView lvEventos;
     private ArrayAdapter<Evento> adapterEventos;
     private List<Evento> listEvento;
     private EventoDao eventoDao;
+    private Evento evento;
+
      private EnderecoDao enderecoDao;
      private Endereco endereco;
-     private Evento evento;
 
     public PesquisaEventoControl(Activity activity) {
         this.activity = activity;
 
+        evento = new Evento();
+
         eventoDao = new EventoDao(activity);
 
-//        evento = (Evento) activity.getIntent().getSerializableExtra(Constantes.PARAM_EVENTO);
+        evento = (Evento) activity.getIntent().getSerializableExtra(Constantes.PARAM_EVENTO);
 
         initComponents();
 
@@ -48,12 +53,12 @@ public class PesquisaEventoControl {
     private void initComponents() {
         lvEventos = activity.findViewById(R.id.lvEventos);
         configListViewEvento();
-        carregarEventos();
+//        carregarEventos();
     }
-
+//
     public void carregarEventos() {
         AsyncHttpClient client = new AsyncHttpClient();
-        String URL = "http://192.168.0.1:8080/GerenciarEvento/api/evento";
+        String URL = "http://192.168.0.21:8080/GerenciarEventoWebService/api/evento";
         client.get(URL, new AsyncHttpResponseHandler() {
             @Override
             public void onStart() {
@@ -112,18 +117,16 @@ public class PesquisaEventoControl {
 
 
 
-//    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        if (resultCode == activity.RESULT_OK) {
-//            if (requestCode == Constantes.REQUEST_EVENTO) {
-//                Evento evento = (Evento) data.getSerializableExtra(Constantes.PARAM_EVENTO);
-//
-////                comanda.getColecaoItemComanda();
-////                adapterEventos.add((Evento) comanda.getColecaoItemComanda());
-//                adapterEventos.add(evento);
-//                adapterEventos.notifyDataSetChanged();
-//            }
-//        }
-//    }
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == activity.RESULT_OK) {
+            if (requestCode == Constantes.REQUEST_EVENTO) {
+                Evento evento = (Evento) data.getSerializableExtra(Constantes.PARAM_EVENTO);
+
+                adapterEventos.add(evento);
+                adapterEventos.notifyDataSetChanged();
+            }
+        }
+    }
 
 
 }

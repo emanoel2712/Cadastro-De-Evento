@@ -3,19 +3,18 @@ package com.example.eventos.control;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.FileUtils;
-import android.util.Log;
-import android.webkit.ValueCallback;
+
 import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-
 import com.example.eventos.R;
-import com.example.eventos.model.dao.EnderecoDao;
-import com.example.eventos.model.dao.EventoDao;
+import com.example.eventos.dao.EnderecoDao;
+import com.example.eventos.dao.EventoDao;
+
+import com.example.eventos.dao.FotoDao;
 import com.example.eventos.model.entidade.Endereco;
 import com.example.eventos.model.entidade.Evento;
+import com.example.eventos.model.entidade.Foto;
 import com.example.eventos.util.Constantes;
 import com.example.eventos.view.PesquisaEventoActivity;
 import com.google.gson.Gson;
@@ -23,15 +22,11 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.sql.SQLException;
 
 import cz.msebera.android.httpclient.Header;
 
 public class MainControl {
-
-//    private static final String TAG = "MainActivity";
     private Activity activity;
     private EditText editNome;
     private EditText editData;
@@ -41,11 +36,15 @@ public class MainControl {
     private EditText editLogradouro;
     private EditText editCep;
     private EditText editNumero;
+    private EditText editFt;
 
     private EventoDao eventoDao;
     private EnderecoDao enderecoDao;
     private Evento event;
     private Endereco endereco;
+
+    private FotoDao fotoDao;
+
 
     private Uri imagemSelecionada;
 //    public static final int INPUT_FILE_REQUEST_CODE = 1;
@@ -56,14 +55,18 @@ public class MainControl {
     public MainControl(Activity activity) {
         this.activity = activity;
 
-//
-//        evento = new Evento();
-//        evento.setEndereco(new Endereco());
-
         eventoDao = new EventoDao(activity);
+//        event = new Evento();
+        endereco = new Endereco();
+//        event.setEndereco(new Endereco());
+event = new Evento();
+
+        enderecoDao = new EnderecoDao(activity);
+
+        fotoDao = new FotoDao(activity);
+        initComponents();
 //        enderecoDao = new EnderecoDao(activity);
 
-        initComponents();
     }
 
     private void initComponents() {
@@ -75,7 +78,7 @@ public class MainControl {
         editCep = activity.findViewById(R.id.editCep);
         editLogradouro = activity.findViewById(R.id.editLogradouro);
         editNumero = activity.findViewById(R.id.editNumero);
-
+        editFt = activity.findViewById(R.id.editFT);
 
     }
 
@@ -83,10 +86,9 @@ public class MainControl {
         Evento evento = new Evento();
 
 
-
         evento.setNome(editNome.getText().toString());
         evento.setData(editData.getText().toString());
-//            evento.setEndereco(new Endereco());
+        evento.setEndereco(new Endereco());
         evento.getEndereco().setEstado(editEstado.getText().toString());
         evento.getEndereco().setCidade(editCidade.getText().toString());
         evento.getEndereco().setBairro(editBairro.getText().toString());
@@ -94,12 +96,12 @@ public class MainControl {
         evento.getEndereco().setLogradouro(editLogradouro.getText().toString());
         evento.getEndereco().setNumero(editNumero.getText().toString());
 
-        Gson g = new Gson();
+        Gson gson = new Gson();
 
-        RequestParams params = new RequestParams("params", g.toJson(evento));
+        RequestParams params = new RequestParams("params", gson.toJson(evento));
 
         AsyncHttpClient client = new AsyncHttpClient();
-        client.post("http://192.168.0.1:8080/GerenciarEvento/api/evento", params, new AsyncHttpResponseHandler() {
+        client.post("http://192.168.0.21:8080/GerenciarEventoWebService/api/evento", params, new AsyncHttpResponseHandler() {
 
             @Override
             public void onStart() {
@@ -123,9 +125,7 @@ public class MainControl {
 
                 Toast.makeText(activity, "Sucesso na requisição", Toast.LENGTH_LONG).show();
 //                limparCampos();
-//                requisicaoPessoa();
-//                atualizarListView();
-//                pessoa = new Pessoa();
+//                evento = new Evento();
             }
 
             @Override
@@ -136,7 +136,6 @@ public class MainControl {
 
 
     }
-
 
 
 //    public void putFile(){
@@ -171,52 +170,79 @@ public class MainControl {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == Activity.RESULT_OK) {
             if (requestCode == 123) {
-                Uri imagemSelecionada = data.getData();
-                String path = data.getData().getPath();
 
-                }
+                //acho q aqui pega o nome da foto ou os dados n sei
+                Uri imagemSelecionada = data.getData();
+//                String path = data.getData().getPath();
+
+                String caminhoSalvarFoto = "C:\\Users\\USUARIO2\\AndroidStudioProjects\\Eventos\\app\\src\\main\\res\\drawable"
+                        + imagemSelecionada;
+
+                String nomeDaFoto = data.getDataString();
+
+                Foto foto = new Foto();
+                foto.setCaminho(nomeDaFoto);
 
             }
 
         }
+    }
 
-        public void salvarAction () {
-            Evento evento = new Evento();
+    private Evento getDadosForm() {
+        Evento evento = new Evento();
 
 
+        evento.setNome(editNome.getText().toString());
+//        evento.setData(editData.getText().toString());
+//        evento.setEndereco(new Endereco());
+        Endereco e = new Endereco();
+//        evento.getEndereco().setEstado(editEstado.getText().toString());
+//        evento.getEndereco().setCidade(editCidade.getText().toString());
+//        evento.getEndereco().setBairro(editBairro.getText().toString());
+//        evento.getEndereco().setCep(editCep.getText().toString());
+//        evento.getEndereco().setLogradouro(editLogradouro.getText().toString());
+//        evento.getEndereco().setNumero(editNumero.getText().toString());
+        e.setEstado(editEstado.getText().toString());
+        e.setCidade(editCidade.getText().toString());
+        e.setBairro(editBairro.getText().toString());
+        e.setCep(editCep.getText().toString());
+        e.setLogradouro(editLogradouro.getText().toString());
+        e.setNumero(editNumero.getText().toString());
 
-            evento.setNome(editNome.getText().toString());
-            evento.setData(editData.getText().toString());
-//            evento.setEndereco(new Endereco());
-            evento.getEndereco().setEstado(editEstado.getText().toString());
-            evento.getEndereco().setCidade(editCidade.getText().toString());
-            evento.getEndereco().setBairro(editBairro.getText().toString());
-            evento.getEndereco().setCep(editCep.getText().toString());
-            evento.getEndereco().setLogradouro(editLogradouro.getText().toString());
-            evento.getEndereco().setNumero(editNumero.getText().toString());
+        evento.setEndereco(e);
+
+        evento.setFoto(new Foto());
+        evento.getFoto().setCaminho(editFt.getText().toString());
+
+
 //            e.getFoto().setCaminho(mFilePathCallback.toString());
 //            e.getFoto().setCaminho(imagemSelecionada.toString());
 //        listComanda.add(comanda);
+        return evento;
+    }
 
-            try {
-                if (eventoDao.getDao().create(evento) > 0) {
+    public void salvarEventoAction() {
+        Evento e = getDadosForm();
 
-                    Intent it = new Intent(activity, PesquisaEventoActivity.class);
-                    it.putExtra(Constantes.PARAM_EVENTO, evento);
-                    activity.startActivity(it);
+        try {
+            if (eventoDao.getDao().create(e) > 0) {
+
+                Intent it = new Intent(activity, PesquisaEventoActivity.class);
+                it.putExtra(Constantes.PARAM_EVENTO, e);
+                activity.startActivity(it);
 
 //                    Intent it = new Intent(activity, PesquisaEventoActivity.class);
 //                    activity.setResult(activity.RESULT_OK, it);
-//                    activity.startActivity(it);
-                }
-
-
-            } catch (SQLException ex) {
-                ex.printStackTrace();
+//                    activity.startActivity(it);*/
             }
-        }
 
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
     }
+
+}
 
 
 

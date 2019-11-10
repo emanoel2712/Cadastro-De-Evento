@@ -1,4 +1,4 @@
-package com.example.eventos.model.dao.helpers;
+package com.example.eventos.dao.helpers;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -12,9 +12,11 @@ import com.j256.ormlite.table.TableUtils;
 
 import java.sql.SQLException;
 
+
+
 public class MyORMLiteHelper extends OrmLiteSqliteOpenHelper{
-    private static final String DATABASE_NAME = "adoteaquiiiii";
-    private static final int DATABASE_VERSION = 17;
+    private static final String DATABASE_NAME = "adoteaquiooouuuuopsssasssssdasda";
+    private static final int DATABASE_VERSION = 29;
     public MyORMLiteHelper(Context c){
         super(c, DATABASE_NAME, null, DATABASE_VERSION);
     }
@@ -24,6 +26,7 @@ public class MyORMLiteHelper extends OrmLiteSqliteOpenHelper{
             TableUtils.createTable(connectionSource, Evento.class);
             TableUtils.createTable(connectionSource, Endereco.class);
             TableUtils.createTable(connectionSource, Foto.class);
+
         } catch (SQLException e) {
             e.printStackTrace();
         }

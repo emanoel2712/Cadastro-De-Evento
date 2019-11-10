@@ -1,6 +1,7 @@
-package com.example.eventos.model.dao.helpers;
+package com.example.eventos.dao.helpers;
 
 import android.content.Context;
+
 
 import com.j256.ormlite.dao.Dao;
 

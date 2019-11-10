@@ -8,7 +8,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 
-@DatabaseTable()
+@DatabaseTable
 public class Endereco implements Serializable {
 
     @DatabaseField(allowGeneratedIdInsert = true, generatedId = true)
@@ -36,7 +36,8 @@ public class Endereco implements Serializable {
     }
 
 
-    public Endereco(String estado, String cidade, String bairro, String cep, String logradouro, String numero) {
+    public Endereco(Integer id, String estado, String cidade, String bairro, String cep, String logradouro, String numero) {
+        this.id = id;
         this.estado = estado;
         this.cidade = cidade;
         this.bairro = bairro;
@@ -56,15 +57,6 @@ public class Endereco implements Serializable {
     public String getEstado() {
         return estado;
     }
-
-
-    //    public Collection<Evento> getColecaoEvento() {
-//        return colecaoEvento;
-//    }
-//
-//    public void setColecaoEvento(Collection<Evento> colecaoEvento) {
-//        this.colecaoEvento = colecaoEvento;
-//    }
 
     public String getCidade() {
         return cidade;

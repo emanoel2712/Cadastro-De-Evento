@@ -1,10 +1,9 @@
-package com.example.eventos.model.dao;
+package com.example.eventos.dao;
 
 import android.content.Context;
 
-import com.example.eventos.model.dao.helpers.DaoHelper;
+import com.example.eventos.dao.helpers.DaoHelper;
 import com.example.eventos.model.entidade.Evento;
-
 
 
 public class EventoDao extends DaoHelper<Evento> {
@@ -12,3 +11,12 @@ public class EventoDao extends DaoHelper<Evento> {
         super(c, Evento.class);
     }
 }
+
+
+
+
+
+
+
+
+

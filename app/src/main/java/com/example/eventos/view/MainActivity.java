@@ -1,15 +1,17 @@
 package com.example.eventos.view;
 
-import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+
+
 import com.example.eventos.R;
 import com.example.eventos.control.MainControl;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
     private MainControl control;
 
     @Override
@@ -19,13 +21,13 @@ public class MainActivity extends AppCompatActivity {
         control = new MainControl(this);
     }
 
-public void carregaFoto(View v){
+    public void carregaFoto(View v) {
         control.carregarFoto();
-}
+    }
 
-public void salvarAction(View v){
-        control.salvarAction();
-}
+    public void salvarAction(View v) {
+        control.salvarEventoAction();
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

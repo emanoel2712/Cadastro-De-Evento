@@ -4,23 +4,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.PesquisaEventoActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".view.PesquisaEventoActivity">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Pesquisa de Evento"
-        android:textAlignment="center"
-        android:textSize="40dp"
+        android:textSize="20dp"
         />
 
     <ListView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/lvEventos"
-        android:divider="#999900"
-        android:dividerHeight="1dp"
-        ></ListView>
+        android:layout_width="match_parent"
+        android:layout_height="260dp"
+        android:divider="#002699"
+        android:dividerHeight="1dp"></ListView>
+
+
+
 
 </LinearLayout>
+
+
+

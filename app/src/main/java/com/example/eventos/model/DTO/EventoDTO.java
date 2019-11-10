@@ -58,7 +58,7 @@ public class EventoDTO {
         e.setNome(nome);
         e.setData(data);
         e.setEndereco(endereco.getEndereco());
-        e.setFoto(foto.getFoto());
+//        e.setFoto(foto.getFoto());
 
         return e;
     }

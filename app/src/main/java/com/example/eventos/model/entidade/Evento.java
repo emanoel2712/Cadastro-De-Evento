@@ -18,22 +18,21 @@ public class Evento implements Serializable {
     @DatabaseField(columnName = "data", canBeNull = true)
     private Date data;
 
-
-    @DatabaseField(foreign = true, foreignAutoRefresh = true, canBeNull = true)
+    @DatabaseField(columnName = "endereco_id", foreign = true, foreignAutoRefresh = true, canBeNull = true)
     private Endereco endereco;
 
     @DatabaseField(columnName = "foto_id", foreign = true, foreignAutoRefresh = true, canBeNull = true)
     private Foto foto;
 
     public Evento() {
-        this.endereco = new Endereco();
+//        this.endereco = new Endereco();
 
     }
 
-    public Evento(String nome, Date data){
+    public Evento(Integer id, String nome, Date data) {
+        this.id = id;
         this.nome = nome;
         this.data = data;
-
 
 
     }
@@ -66,20 +65,6 @@ public class Evento implements Serializable {
         this.foto = foto;
     }
 
-    public void setData(Date data) {
-        this.data = data;
-    }
-
-    public void setData(String data) {
-        try {
-//                this.data = Date.parse(String.valueOf(data);
-        } catch (Exception e) {
-            this.data = null;
-        }
-
-
-    }
-
 
     public Endereco getEndereco() {
         return endereco;
@@ -89,28 +74,42 @@ public class Evento implements Serializable {
         this.endereco = endereco;
     }
 
-    @Override
-    public String toString() {
-        return " Nome do evento: " + nome + "\n" +
-                " Data=" + data + "\n" +
-                " Estado: " + endereco.getEstado() + "\n" +
-                " Cidade: " + endereco.getCidade() + "\n" +
-                " Bairro: " + endereco.getBairro() + "\n" +
-                " Logradouro: " + endereco.getLogradouro() + "\n" +
-                " Cep: " + endereco.getCep() + "\n" +
-                " Número: " + endereco.getNumero();
+    public void setData(Date data) {
+        this.data = data;
+    }
+
+    public void setData(String data) {
+        try {
+               String.valueOf(data);
+        } catch (Exception e) {
+            this.data = null;
+        }
+
+
+    }
 
 
 //    @Override
 //    public String toString() {
-//        return "Evento{" +
-//                "id=" + id +
-//                ", nome='" + nome + '\'' +
-//                ", data=" + data +
-//                ", endereco=" + endereco +
-//                ", foto=" + foto +
-//                '}';
-//    }
+//        return " Nome do evento: " + nome + "\n" +
+//                " Data=" + data + "\n" +
+//                " Estado: " + endereco.getEstado() + "\n" +
+//                " Cidade: " + endereco.getCidade() + "\n" +
+//                " Bairro: " + endereco.getBairro() + "\n" +
+//                " Logradouro: " + endereco.getLogradouro() + "\n" +
+//                " Cep: " + endereco.getCep() + "\n" +
+//                " Número: " + endereco.getNumero();
+
+
+    @Override
+    public String toString() {
+        return "Evento{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", data=" + data +
+                ", endereco=" + endereco +
+                ", foto=" + foto +
+                '}';
     }
 }
 
