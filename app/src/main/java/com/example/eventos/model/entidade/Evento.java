@@ -18,14 +18,15 @@ public class Evento implements Serializable {
     @DatabaseField(columnName = "data", canBeNull = true)
     private Date data;
 
-    @DatabaseField(columnName = "endereco_id", foreign = true, foreignAutoRefresh = true, canBeNull = true)
+    @DatabaseField(foreign = true, foreignAutoRefresh = true)
     private Endereco endereco;
 
-    @DatabaseField(columnName = "foto_id", foreign = true, foreignAutoRefresh = true, canBeNull = true)
+    @DatabaseField(foreign = true, foreignAutoRefresh = true)
     private Foto foto;
 
     public Evento() {
-//        this.endereco = new Endereco();
+        this.endereco = new Endereco();
+        this.foto = new Foto();
 
     }
 
@@ -34,6 +35,8 @@ public class Evento implements Serializable {
         this.nome = nome;
         this.data = data;
 
+        this.endereco = new Endereco();
+        this.foto = new Foto();
 
     }
 
@@ -99,8 +102,8 @@ public class Evento implements Serializable {
 //                " Logradouro: " + endereco.getLogradouro() + "\n" +
 //                " Cep: " + endereco.getCep() + "\n" +
 //                " Número: " + endereco.getNumero();
-
-
+//    }
+//
     @Override
     public String toString() {
         return "Evento{" +

@@ -13,10 +13,9 @@ import com.j256.ormlite.table.TableUtils;
 import java.sql.SQLException;
 
 
-
 public class MyORMLiteHelper extends OrmLiteSqliteOpenHelper{
-    private static final String DATABASE_NAME = "adoteaquiooouuuuopsssasssssdasda";
-    private static final int DATABASE_VERSION = 29;
+    private static final String DATABASE_NAME = "gerenciareventos";
+    private static final int DATABASE_VERSION = 4;
     public MyORMLiteHelper(Context c){
         super(c, DATABASE_NAME, null, DATABASE_VERSION);
     }

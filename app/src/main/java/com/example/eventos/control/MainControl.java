@@ -22,6 +22,9 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.sql.SQLException;
 
 import cz.msebera.android.httpclient.Header;
@@ -40,32 +43,29 @@ public class MainControl {
 
     private EventoDao eventoDao;
     private EnderecoDao enderecoDao;
-    private Evento event;
+    private Evento evento;
     private Endereco endereco;
-
+    private Foto foto;
     private FotoDao fotoDao;
-
-
     private Uri imagemSelecionada;
 //    public static final int INPUT_FILE_REQUEST_CODE = 1;
-//    private ProgressDialog progressDialog;
+//    private ProgressDialoandroid-async-http-1.4.9.jarg progressDialog;
 //    private ValueCallback<Uri[]> mFilePathCallback;
 //    private String mCameraPhotoPath;
 
     public MainControl(Activity activity) {
         this.activity = activity;
 
-        eventoDao = new EventoDao(activity);
-//        event = new Evento();
-        endereco = new Endereco();
-//        event.setEndereco(new Endereco());
-event = new Evento();
+//        this.evento = new Evento();
+//        this.endereco = new Endereco();
+//        this.foto = new Foto();
 
-        enderecoDao = new EnderecoDao(activity);
+        this.eventoDao = new EventoDao(activity);
+        this.enderecoDao = new EnderecoDao(activity);
+        this.fotoDao = new FotoDao(activity);
 
-        fotoDao = new FotoDao(activity);
         initComponents();
-//        enderecoDao = new EnderecoDao(activity);
+
 
     }
 
@@ -82,60 +82,60 @@ event = new Evento();
 
     }
 
-    public void cadastroPostEvento() {
-        Evento evento = new Evento();
-
-
-        evento.setNome(editNome.getText().toString());
-        evento.setData(editData.getText().toString());
-        evento.setEndereco(new Endereco());
-        evento.getEndereco().setEstado(editEstado.getText().toString());
-        evento.getEndereco().setCidade(editCidade.getText().toString());
-        evento.getEndereco().setBairro(editBairro.getText().toString());
-        evento.getEndereco().setCep(editCep.getText().toString());
-        evento.getEndereco().setLogradouro(editLogradouro.getText().toString());
-        evento.getEndereco().setNumero(editNumero.getText().toString());
-
-        Gson gson = new Gson();
-
-        RequestParams params = new RequestParams("params", gson.toJson(evento));
-
-        AsyncHttpClient client = new AsyncHttpClient();
-        client.post("http://192.168.0.21:8080/GerenciarEventoWebService/api/evento", params, new AsyncHttpResponseHandler() {
-
-            @Override
-            public void onStart() {
-                super.onStart();
-                Toast.makeText(activity, "Iniciando requisição", Toast.LENGTH_LONG).show();
-
-            }
-
-            @Override
-            public void onRetry(int retryNo) {
-                super.onRetry(retryNo);
-            }
-
-            @Override
-            public void onSuccess(int i, Header[] headers, byte[] bytes) {
-                try {
-                    eventoDao.getDao().create(event);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-                Toast.makeText(activity, "Sucesso na requisição", Toast.LENGTH_LONG).show();
-//                limparCampos();
-//                evento = new Evento();
-            }
-
-            @Override
-            public void onFailure(int i, Header[] headers, byte[] bytes, Throwable throwable) {
-                Toast.makeText(activity, "Erro na requisição", Toast.LENGTH_LONG).show();
-            }
-        });
-
-
-    }
+//    public void cadastroPostEvento() {
+//        Evento evento = new Evento();
+//
+//
+//        evento.setNome(editNome.getText().toString());
+//        evento.setData(editData.getText().toString());
+//        evento.setEndereco(new Endereco());
+//        evento.getEndereco().setEstado(editEstado.getText().toString());
+//        evento.getEndereco().setCidade(editCidade.getText().toString());
+//        evento.getEndereco().setBairro(editBairro.getText().toString());
+//        evento.getEndereco().setCep(editCep.getText().toString());
+//        evento.getEndereco().setLogradouro(editLogradouro.getText().toString());
+//        evento.getEndereco().setNumero(editNumero.getText().toString());
+//
+//        Gson gson = new Gson();
+//
+//        RequestParams params = new RequestParams("params", gson.toJson(evento));
+//
+//        AsyncHttpClient client = new AsyncHttpClient();
+//        client.post("http://192.168.0.21:8080/GerenciarEventoWebService/api/evento", params, new AsyncHttpResponseHandler() {
+//
+//            @Override
+//            public void onStart() {
+//                super.onStart();
+//                Toast.makeText(activity, "Iniciando requisição", Toast.LENGTH_LONG).show();
+//
+//            }
+//
+//            @Override
+//            public void onRetry(int retryNo) {
+//                super.onRetry(retryNo);
+//            }
+//
+//            @Override
+//            public void onSuccess(int i, Header[] headers, byte[] bytes) {
+//                try {
+////                    eventoDao.getDao().create(event);
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//
+//                Toast.makeText(activity, "Sucesso na requisição", Toast.LENGTH_LONG).show();
+////                limparCampos();
+////                evento = new Evento();
+//            }
+//
+//            @Override
+//            public void onFailure(int i, Header[] headers, byte[] bytes, Throwable throwable) {
+//                Toast.makeText(activity, "Erro na requisição", Toast.LENGTH_LONG).show();
+//            }
+//        });
+//
+//
+//    }
 
 
 //    public void putFile(){
@@ -167,6 +167,24 @@ event = new Evento();
 
     }
 
+
+    public void salvaFotof(File file) {
+
+
+
+
+        String caminhoSalvarFoto = "C:\\Users\\USUARIO2\\AndroidStudioProjects\\Eventos\\app\\src\\main\\res\\drawable"
+                + file.getName();
+
+        String nomeFoto = file.getName();
+        foto.setCaminho(nomeFoto);
+
+        System.out.println("caminho da imagem salva é  = " + caminhoSalvarFoto);
+    }
+
+
+
+
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == Activity.RESULT_OK) {
             if (requestCode == 123) {
@@ -179,6 +197,8 @@ event = new Evento();
                         + imagemSelecionada;
 
                 String nomeDaFoto = data.getDataString();
+
+
 
                 Foto foto = new Foto();
                 foto.setCaminho(nomeDaFoto);
@@ -193,25 +213,32 @@ event = new Evento();
 
 
         evento.setNome(editNome.getText().toString());
-//        evento.setData(editData.getText().toString());
-//        evento.setEndereco(new Endereco());
-        Endereco e = new Endereco();
-//        evento.getEndereco().setEstado(editEstado.getText().toString());
-//        evento.getEndereco().setCidade(editCidade.getText().toString());
-//        evento.getEndereco().setBairro(editBairro.getText().toString());
-//        evento.getEndereco().setCep(editCep.getText().toString());
-//        evento.getEndereco().setLogradouro(editLogradouro.getText().toString());
-//        evento.getEndereco().setNumero(editNumero.getText().toString());
-        e.setEstado(editEstado.getText().toString());
-        e.setCidade(editCidade.getText().toString());
-        e.setBairro(editBairro.getText().toString());
-        e.setCep(editCep.getText().toString());
-        e.setLogradouro(editLogradouro.getText().toString());
-        e.setNumero(editNumero.getText().toString());
+        evento.setData(editData.getText().toString());
 
-        evento.setEndereco(e);
+        evento.getEndereco().setEstado(editEstado.getText().toString());
+        evento.getEndereco().setCidade(editCidade.getText().toString());
+        evento.getEndereco().setBairro(editBairro.getText().toString());
+        evento.getEndereco().setCep(editCep.getText().toString());
+        evento.getEndereco().setLogradouro(editLogradouro.getText().toString());
+        evento.getEndereco().setNumero(editNumero.getText().toString());
 
-        evento.setFoto(new Foto());
+//        Endereco e = new Endereco();
+//
+//        e.setEstado(editEstado.getText().toString());
+//        e.setCidade(editCidade.getText().toString());
+//        e.setBairro(editBairro.getText().toString());
+//        e.setCep(editCep.getText().toString());
+//        e.setLogradouro(editLogradouro.getText().toString());
+//        e.setNumero(editNumero.getText().toString());
+
+//        evento.setEndereco(e);
+
+//        evento.setEndereco(e);
+
+//        evento.setFoto(new Foto());
+//        Foto foto = new Foto();
+//        foto.setCaminho(editFt.getText().toString());
+//        evento.setFoto(foto);
         evento.getFoto().setCaminho(editFt.getText().toString());
 
 
@@ -225,11 +252,13 @@ event = new Evento();
         Evento e = getDadosForm();
 
         try {
+//            if (eventoDao.getDao().createIfNotExists(e) > 0){
             if (eventoDao.getDao().create(e) > 0) {
 
                 Intent it = new Intent(activity, PesquisaEventoActivity.class);
                 it.putExtra(Constantes.PARAM_EVENTO, e);
                 activity.startActivity(it);
+
 
 //                    Intent it = new Intent(activity, PesquisaEventoActivity.class);
 //                    activity.setResult(activity.RESULT_OK, it);

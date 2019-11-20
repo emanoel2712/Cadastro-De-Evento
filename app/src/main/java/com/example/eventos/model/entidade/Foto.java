@@ -38,5 +38,11 @@ public class Foto implements Serializable {
         this.caminho = caminho;
     }
 
-
+    @Override
+    public String toString() {
+        return "Foto{" +
+                "id=" + id +
+                ", caminho='" + caminho + '\'' +
+                '}';
+    }
 }

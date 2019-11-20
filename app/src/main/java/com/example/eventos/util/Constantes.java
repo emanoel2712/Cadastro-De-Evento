@@ -6,6 +6,4 @@ public class Constantes {
     public static final String PARAM_EVENTO = "evento";
 
 
-    public static final int REQUEST_ENDERECO = 8;
-    public static final String PARAM_ENDERECO = "endereco";
 }

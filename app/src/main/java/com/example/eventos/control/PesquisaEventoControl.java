@@ -16,12 +16,20 @@ import com.example.eventos.model.entidade.Endereco;
 import com.example.eventos.model.entidade.Evento;
 import com.example.eventos.util.Constantes;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.lang.reflect.Type;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+
+import cz.msebera.android.httpclient.Header;
 
 
 public class PesquisaEventoControl {
@@ -47,13 +55,13 @@ public class PesquisaEventoControl {
 
         initComponents();
 
-//        carregarEventos();
+        carregarEventos();
     }
 
     private void initComponents() {
         lvEventos = activity.findViewById(R.id.lvEventos);
         configListViewEvento();
-//        carregarEventos();
+        carregarEventos();
     }
 //
     public void carregarEventos() {
@@ -74,18 +82,39 @@ public class PesquisaEventoControl {
             }
 
             @Override
-            public void onSuccess(int i, cz.msebera.android.httpclient.Header[] headers, byte[] bytes) {
+            public void onSuccess(int i, Header[] headers, byte[] bytes) {
                 String eventoJSON = new String(bytes);
+
+
                 Gson gson = new Gson();
 
+
                 //Converte o texto json para objeto
-                EventoDTO eDTO = gson.fromJson(eventoJSON, EventoDTO.class);
+//                EventoDTO eDTO = gson.fromJson(eventoJSON, EventoDTO.class);
+
 
                 //Transforma o EventoDTO da API no Evento do projeto
-                Evento e = eDTO.getEvento();
+//                Evento e = eDTO.getEvento();
 //                carregarListView(e);
 //                configListViewEvento();
+
+
+                Type tipo = new TypeToken<List<EventoDTO>>() {
+                }.getType();
+
+                List<EventoDTO> eventos = gson.fromJson(eventoJSON, tipo);
+
+                for (EventoDTO e : eventos) {
+                    listEvento.add(e.getEvento());
+                    try {
+                        eventoDao.getDao().createIfNotExists(e.getEvento());
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
+                }
+                   adapterEventos.notifyDataSetChanged();
             }
+
 
             @Override
             public void onFailure(int i, cz.msebera.android.httpclient.Header[] headers, byte[] bytes, Throwable throwable) {

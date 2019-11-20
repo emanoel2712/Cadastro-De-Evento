@@ -17,7 +17,7 @@ public class PesquisaEventoActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pesquisa_evento);
         control = new PesquisaEventoControl(this);
-//        control.carregarEventos();
+        control.carregarEventos();
     }
 
     @Override

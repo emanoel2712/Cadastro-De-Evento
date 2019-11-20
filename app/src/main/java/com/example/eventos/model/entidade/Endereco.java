@@ -14,16 +14,16 @@ public class Endereco implements Serializable {
     @DatabaseField(allowGeneratedIdInsert = true, generatedId = true)
     private Integer id;
 
-    @DatabaseField(columnName = "estado", canBeNull = false)
+    @DatabaseField(columnName = "estado", canBeNull = true)
     private String estado;
 
-    @DatabaseField(columnName = "cidade", canBeNull = false)
+    @DatabaseField(columnName = "cidade", canBeNull = true)
     private String cidade;
 
-    @DatabaseField(columnName = "bairro", canBeNull = false)
+    @DatabaseField(columnName = "bairro", canBeNull = true)
     private String bairro;
 
-    @DatabaseField(columnName = "cep", canBeNull = false)
+    @DatabaseField(columnName = "cep", canBeNull = true)
     private String cep;
 
     @DatabaseField(columnName = "logradouro")
@@ -102,18 +102,7 @@ public class Endereco implements Serializable {
         this.numero = numero;
     }
 
-    @Override
-    public String toString() {
-        return "Endereco{" +
-                "id=" + id +
-                ", estado='" + estado + '\'' +
-                ", cidade='" + cidade + '\'' +
-                ", bairro='" + bairro + '\'' +
-                ", cep='" + cep + '\'' +
-                ", logradouro='" + logradouro + '\'' +
-                ", numero='" + numero + '\'' +
-                '}';
-    }
+
 }
 
 

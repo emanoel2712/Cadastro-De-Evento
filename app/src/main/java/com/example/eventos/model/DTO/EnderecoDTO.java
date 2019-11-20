@@ -3,6 +3,7 @@ package com.example.eventos.model.DTO;
 import com.example.eventos.model.entidade.Endereco;
 
 public class EnderecoDTO {
+    private Integer id;
     private String estado;
     private String cidade;
     private String bairro;
@@ -13,13 +14,23 @@ public class EnderecoDTO {
     public EnderecoDTO() {
     }
 
-    public EnderecoDTO(String estado, String cidade, String bairro, String cep, String logradouro, String numero) {
+    public EnderecoDTO(Integer id, String estado, String cidade, String bairro, String cep, String logradouro, String numero) {
+        this.id = id;
         this.estado = estado;
         this.cidade = cidade;
         this.bairro = bairro;
         this.cep = cep;
         this.logradouro = logradouro;
         this.numero = numero;
+    }
+
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getEstado() {
@@ -73,6 +84,7 @@ public class EnderecoDTO {
 
     public Endereco getEndereco() {
         Endereco e = new Endereco();
+        e.setId(id);
         e.setEstado(estado);
         e.setCidade(cidade);
         e.setBairro(bairro);
