@@ -8,19 +8,21 @@ import java.util.Date;
 public class EventoDTO {
     private Integer id;
     private String nome;
-    private Date data;
+    private String data;
     private EnderecoDTO endereco;
-    private FotoDTO foto;
+
 
     public EventoDTO() {
-        endereco = new EnderecoDTO();
-        foto = new FotoDTO();
+
+
     }
 
-    public EventoDTO(Integer id, String nome, Date data) {
+    public EventoDTO(Integer id, String nome, String data, EnderecoDTO endereco) {
         this.id = id;
         this.nome = nome;
         this.data = data;
+        this.endereco = endereco;
+
 
     }
 
@@ -40,11 +42,11 @@ public class EventoDTO {
         this.nome = nome;
     }
 
-    public Date getData() {
+    public String getData() {
         return data;
     }
 
-    public void setData(Date data) {
+    public void setData(String data) {
         this.data = data;
     }
 
@@ -56,13 +58,6 @@ public class EventoDTO {
         this.endereco = endereco;
     }
 
-    public FotoDTO getFoto() {
-        return foto;
-    }
-
-    public void setFoto(FotoDTO foto) {
-        this.foto = foto;
-    }
 
     public Evento getEvento() {
         Evento e = new Evento();
@@ -70,7 +65,12 @@ public class EventoDTO {
         e.setNome(nome);
         e.setData(data);
         e.setEndereco(endereco.getEndereco());
-        e.setFoto(foto.getFoto());
+//        e.getEndereco().setLogradouro(endereco.getLogradouro());
+//        e.getEndereco().setEstado(endereco.getEstado());
+//        e.getEndereco().setCidade(endereco.getCidade());
+//        e.getEndereco().setNumero(endereco.getNumero());
+//        e.getEndereco().setCep(endereco.getCep());
+//        e.getEndereco().setBairro(endereco.getBairro());
 
         return e;
     }

@@ -5,7 +5,6 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.example.eventos.model.entidade.Endereco;
 import com.example.eventos.model.entidade.Evento;
-import com.example.eventos.model.entidade.Foto;
 import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
@@ -14,8 +13,8 @@ import java.sql.SQLException;
 
 
 public class MyORMLiteHelper extends OrmLiteSqliteOpenHelper{
-    private static final String DATABASE_NAME = "gerenciareventos";
-    private static final int DATABASE_VERSION = 4;
+    private static final String DATABASE_NAME = "gerenciareventosss";
+    private static final int DATABASE_VERSION = 5;
     public MyORMLiteHelper(Context c){
         super(c, DATABASE_NAME, null, DATABASE_VERSION);
     }
@@ -24,7 +23,7 @@ public class MyORMLiteHelper extends OrmLiteSqliteOpenHelper{
         try {
             TableUtils.createTable(connectionSource, Evento.class);
             TableUtils.createTable(connectionSource, Endereco.class);
-            TableUtils.createTable(connectionSource, Foto.class);
+
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -35,7 +34,7 @@ public class MyORMLiteHelper extends OrmLiteSqliteOpenHelper{
         try {
             TableUtils.dropTable(connectionSource, Evento.class, true);
             TableUtils.dropTable(connectionSource, Endereco.class, true);
-            TableUtils.dropTable(connectionSource, Foto.class, true);
+
             onCreate(sqLiteDatabase, connectionSource);
         } catch (SQLException e) {
             e.printStackTrace();

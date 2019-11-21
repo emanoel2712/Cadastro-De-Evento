@@ -102,7 +102,7 @@ public class PesquisaEventoControl {
                 Type tipo = new TypeToken<List<EventoDTO>>() {
                 }.getType();
 
-                List<EventoDTO> eventos = gson.fromJson(eventoJSON, tipo);
+                    List<EventoDTO> eventos = gson.fromJson(eventoJSON, tipo);
 
                 for (EventoDTO e : eventos) {
                     listEvento.add(e.getEvento());
@@ -146,16 +146,8 @@ public class PesquisaEventoControl {
 
 
 
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (resultCode == activity.RESULT_OK) {
-            if (requestCode == Constantes.REQUEST_EVENTO) {
-                Evento evento = (Evento) data.getSerializableExtra(Constantes.PARAM_EVENTO);
 
-                adapterEventos.add(evento);
-                adapterEventos.notifyDataSetChanged();
-            }
-        }
-    }
+
 
 
 }

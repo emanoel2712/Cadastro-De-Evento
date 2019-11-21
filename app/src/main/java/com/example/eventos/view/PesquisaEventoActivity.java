@@ -27,9 +27,4 @@ public class PesquisaEventoActivity extends Activity {
     }
 
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        control.onActivityResult(requestCode, resultCode, data);
-    }
 }

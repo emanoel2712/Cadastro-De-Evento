@@ -21,19 +21,12 @@ public class MainActivity extends Activity {
         control = new MainControl(this);
     }
 
-    public void carregaFoto(View v) {
-        control.carregarFoto();
-    }
 
     public void salvarAction(View v) {
-        control.salvarEventoAction();
+        control.cadastroPostEvento();
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        control.onActivityResult(requestCode, resultCode, data);
-    }
+
 
 }
 

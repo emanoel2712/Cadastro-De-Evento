@@ -38,7 +38,8 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
-                android:text="Data: " />
+                android:text="Data: "
+                />
 
         </LinearLayout>
 
@@ -247,11 +248,7 @@
     </LinearLayout>
 
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="carregaFoto"
-        android:text="Adicionar Foto" />
+
 
     <Button
         android:layout_width="match_parent"
@@ -260,13 +257,6 @@
         android:text="Salvar" />
 
 
-    <EditText
 
-        android:id="@+id/editFT"
-
-        android:layout_width="427dp"
-        android:layout_height="23dp"
-        android:hint="FT"
-        android:inputType="text" />
 
 </LinearLayout>
