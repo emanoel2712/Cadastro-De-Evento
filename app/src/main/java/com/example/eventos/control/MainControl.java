@@ -68,17 +68,19 @@ public class MainControl {
 
     public void cadastroPostEvento() {
 
-        evento = new Evento();
+        evento = getDadosForm();
 
-        evento.setNome(editNome.getText().toString());
-        evento.setData(editData.getText().toString());
-
-        evento.getEndereco().setEstado(editEstado.getText().toString());
-        evento.getEndereco().setCidade(editCidade.getText().toString());
-        evento.getEndereco().setBairro(editBairro.getText().toString());
-        evento.getEndereco().setCep(editCep.getText().toString());
-        evento.getEndereco().setLogradouro(editLogradouro.getText().toString());
-        evento.getEndereco().setNumero(editNumero.getText().toString());
+//        evento = new Evento();
+//
+//        evento.setNome(editNome.getText().toString());
+//        evento.setData(editData.getText().toString());
+//
+//        evento.getEndereco().setEstado(editEstado.getText().toString());
+//        evento.getEndereco().setCidade(editCidade.getText().toString());
+//        evento.getEndereco().setBairro(editBairro.getText().toString());
+//        evento.getEndereco().setCep(editCep.getText().toString());
+//        evento.getEndereco().setLogradouro(editLogradouro.getText().toString());
+//        evento.getEndereco().setNumero(editNumero.getText().toString());
 
         Gson gson = new Gson();
 
@@ -86,7 +88,7 @@ public class MainControl {
 
         AsyncHttpClient client = new AsyncHttpClient();
         String URL = "http://192.168.0.21:8080/GerenciarEventoWebService/api/evento";
-        client.post(URL, params, new AsyncHttpResponseHandler(){
+        client.post(URL, params, new AsyncHttpResponseHandler() {
 
             @Override
             public void onStart() {
@@ -95,6 +97,12 @@ public class MainControl {
 
             }
 
+            @Override
+            public void onRetry(int retryNo) {
+                super.onRetry(retryNo);
+
+
+            }
 
             @Override
             public void onSuccess(int i, Header[] headers, byte[] bytes) {
@@ -104,7 +112,7 @@ public class MainControl {
                     e.printStackTrace();
                 }
 
-                Toast.makeText(activity, "Sucesso na requisição", Toast.LENGTH_LONG).show();
+                Toast.makeText(activity, "Requisição Bem Sucedida", Toast.LENGTH_LONG).show();
 
                 Intent it = new Intent(activity, PesquisaEventoActivity.class);
 //                it.putExtra(Constantes.PARAM_EVENTO, e);
@@ -118,16 +126,10 @@ public class MainControl {
             }
 
 
-            @Override
-            public void onRetry(int retryNo) {
-                super.onRetry(retryNo);
-            }
-
         });
 
 
     }
-
 
 
     private Evento getDadosForm() {

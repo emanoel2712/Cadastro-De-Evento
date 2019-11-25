@@ -65,12 +65,6 @@ public class EventoDTO {
         e.setNome(nome);
         e.setData(data);
         e.setEndereco(endereco.getEndereco());
-//        e.getEndereco().setLogradouro(endereco.getLogradouro());
-//        e.getEndereco().setEstado(endereco.getEstado());
-//        e.getEndereco().setCidade(endereco.getCidade());
-//        e.getEndereco().setNumero(endereco.getNumero());
-//        e.getEndereco().setCep(endereco.getCep());
-//        e.getEndereco().setBairro(endereco.getBairro());
 
         return e;
     }

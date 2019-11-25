@@ -73,26 +73,26 @@ public class Evento implements Serializable {
     }
 
 
-//    @Override
-//    public String toString() {
-//        return " Nome do evento: " + nome + "\n" +
-//                " Data=" + data + "\n" +
-//                " Estado: " + endereco.getEstado() + "\n" +
-//                " Cidade: " + endereco.getCidade() + "\n" +
-//                " Bairro: " + endereco.getBairro() + "\n" +
-//                " Logradouro: " + endereco.getLogradouro() + "\n" +
-//                " Cep: " + endereco.getCep() + "\n" +
-//                " Número: " + endereco.getNumero();
-//    }
-//
     @Override
     public String toString() {
-        return "Evento{" +
-                "id=" + id +
-                ", nome='" + nome + '\'' +
-                ", data=" + data +
-                ", endereco=" + endereco
-                ;
+        return " Nome do evento: " + nome + "\n" +
+                " Data=" + data + "\n" +
+                " Estado: " + endereco.getEstado() + "\n" +
+                " Cidade: " + endereco.getCidade() + "\n" +
+                " Bairro: " + endereco.getBairro() + "\n" +
+                " Logradouro: " + endereco.getLogradouro() + "\n" +
+                " Cep: " + endereco.getCep() + "\n" +
+                " Número: " + endereco.getNumero();
     }
+//
+//    @Override
+//    public String toString() {
+//        return "Evento{" +
+//                "id=" + id +
+//                ", nome='" + nome + '\'' +
+//                ", data=" + data +
+//                ", endereco=" + endereco
+//                ;
+//    }
 }
 

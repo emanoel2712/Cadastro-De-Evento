@@ -88,23 +88,12 @@ public class PesquisaEventoControl {
 
                 Gson gson = new Gson();
 
-
-                //Converte o texto json para objeto
-//                EventoDTO eDTO = gson.fromJson(eventoJSON, EventoDTO.class);
-
-
-                //Transforma o EventoDTO da API no Evento do projeto
-//                Evento e = eDTO.getEvento();
-//                carregarListView(e);
-//                configListViewEvento();
-
-
                 Type tipo = new TypeToken<List<EventoDTO>>() {
                 }.getType();
 
-                    List<EventoDTO> eventos = gson.fromJson(eventoJSON, tipo);
+                    List<EventoDTO> listEventosDTO = gson.fromJson(eventoJSON, tipo);
 
-                for (EventoDTO e : eventos) {
+                for (EventoDTO e : listEventosDTO) {
                     listEvento.add(e.getEvento());
                     try {
                         eventoDao.getDao().createIfNotExists(e.getEvento());

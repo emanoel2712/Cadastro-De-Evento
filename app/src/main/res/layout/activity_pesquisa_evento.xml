@@ -11,8 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Pesquisa de Evento"
-        android:textSize="20dp"
-        />
+        android:textSize="20dp" />
 
     <ListView
         android:id="@+id/lvEventos"
@@ -20,8 +19,6 @@
         android:layout_height="260dp"
         android:divider="#002699"
         android:dividerHeight="1dp"></ListView>
-
-
 
 
 </LinearLayout>
