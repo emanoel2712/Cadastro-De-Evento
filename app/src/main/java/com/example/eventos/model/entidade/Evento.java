@@ -15,10 +15,10 @@ public class Evento implements Serializable {
     @DatabaseField(columnName = "nome", canBeNull = false, width = 60)
     private String nome;
 
-    @DatabaseField(columnName = "data", canBeNull = true)
+    @DatabaseField(columnName = "data")
     private String data;
 
-    @DatabaseField(foreign = true, foreignAutoRefresh = true)
+    @DatabaseField(foreign = true, foreignAutoRefresh = true, canBeNull = false)
     private Endereco endereco;
 
 

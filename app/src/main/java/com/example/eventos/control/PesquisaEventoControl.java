@@ -51,11 +51,9 @@ public class PesquisaEventoControl {
 
         eventoDao = new EventoDao(activity);
 
-        evento = (Evento) activity.getIntent().getSerializableExtra(Constantes.PARAM_EVENTO);
-
         initComponents();
 
-        carregarEventos();
+
     }
 
     private void initComponents() {
@@ -66,8 +64,7 @@ public class PesquisaEventoControl {
 //
     public void carregarEventos() {
         AsyncHttpClient client = new AsyncHttpClient();
-//        String URL = "http://192.168.0.21:8080/GerenciarEventoWebService/api/evento";
-        String URL = "http://10.10.164.223:8080/GerenciarEventoWebService/api/evento";
+        String URL = "http://192.168.0.21:8080/GerenciarEventoWebService/api/evento";
         client.get(URL, new AsyncHttpResponseHandler() {
             @Override
             public void onStart() {
@@ -118,7 +115,6 @@ public class PesquisaEventoControl {
 
 
     public void configListViewEvento() {
-//        listComanda = new ArrayList<>();
 
         try {
             listEvento = eventoDao.getDao().queryForAll();

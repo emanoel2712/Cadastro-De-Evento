@@ -75,7 +75,7 @@ public class MainControl {
         RequestParams dado = new RequestParams("dado", gson.toJson(evento));
 
         AsyncHttpClient client = new AsyncHttpClient();
-        String URL = "http://10.10.164.223:8080/GerenciarEventoWebService/api/evento";
+        String URL = "http://192.168.0.21:8080/GerenciarEventoWebService/api/evento";
         client.post(URL, dado, new AsyncHttpResponseHandler() {
 
             @Override
@@ -102,7 +102,6 @@ public class MainControl {
                 Toast.makeText(activity, "Requisição Bem Sucedida", Toast.LENGTH_LONG).show();
 
                 Intent it = new Intent(activity, PesquisaEventoActivity.class);
-//                it.putExtra(Constantes.PARAM_EVENTO, e);
                 activity.startActivity(it);
 
             }
@@ -121,13 +120,13 @@ public class MainControl {
 
     private Evento getDadosForm() {
         Evento evento = new Evento();
-
+        Endereco endereco = new Endereco();
 
         evento.setNome(editNome.getText().toString());
         evento.setData(editData.getText().toString());
 
-
         evento.setEndereco(new Endereco());
+
         evento.getEndereco().setEstado(editEstado.getText().toString());
         evento.getEndereco().setCidade(editCidade.getText().toString());
         evento.getEndereco().setBairro(editBairro.getText().toString());
@@ -135,53 +134,11 @@ public class MainControl {
         evento.getEndereco().setLogradouro(editLogradouro.getText().toString());
         evento.getEndereco().setNumero(editNumero.getText().toString());
 
-//        Endereco e = new Endereco();
-//
-//        e.setEstado(editEstado.getText().toString());
-//        e.setCidade(editCidade.getText().toString());
-//        e.setBairro(editBairro.getText().toString());
-//        e.setCep(editCep.getText().toString());
-//        e.setLogradouro(editLogradouro.getText().toString());
-//        e.setNumero(editNumero.getText().toString());
+        evento.setEndereco(evento.getEndereco());
 
-//        evento.setEndereco(e);
-
-//        evento.setEndereco(e);
-
-//        evento.setFoto(new Foto());
-//        Foto foto = new Foto();
-//        foto.setCaminho(editFt.getText().toString());
-//        evento.setFoto(foto)
-
-
-//            e.getFoto().setCaminho(mFilePathCallback.toString());
-//            e.getFoto().setCaminho(imagemSelecionada.toString());
-//        listComanda.add(comanda);
         return evento;
     }
 
-    public void salvarEventoAction() {
-        Evento e = getDadosForm();
-
-        try {
-//            if (eventoDao.getDao().createIfNotExists(e) > 0){
-            if (eventoDao.getDao().create(e) > 0) {
-
-                Intent it = new Intent(activity, PesquisaEventoActivity.class);
-                it.putExtra(Constantes.PARAM_EVENTO, e);
-                activity.startActivity(it);
-
-
-//                    Intent it = new Intent(activity, PesquisaEventoActivity.class);
-//                    activity.setResult(activity.RESULT_OK, it);
-//                    activity.startActivity(it);*/
-            }
-
-
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-    }
 
 }
 
