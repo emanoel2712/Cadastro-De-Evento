@@ -70,25 +70,13 @@ public class MainControl {
 
         evento = getDadosForm();
 
-//        evento = new Evento();
-//
-//        evento.setNome(editNome.getText().toString());
-//        evento.setData(editData.getText().toString());
-//
-//        evento.getEndereco().setEstado(editEstado.getText().toString());
-//        evento.getEndereco().setCidade(editCidade.getText().toString());
-//        evento.getEndereco().setBairro(editBairro.getText().toString());
-//        evento.getEndereco().setCep(editCep.getText().toString());
-//        evento.getEndereco().setLogradouro(editLogradouro.getText().toString());
-//        evento.getEndereco().setNumero(editNumero.getText().toString());
-
         Gson gson = new Gson();
 
-        RequestParams params = new RequestParams("params", gson.toJson(evento));
+        RequestParams dado = new RequestParams("dado", gson.toJson(evento));
 
         AsyncHttpClient client = new AsyncHttpClient();
-        String URL = "http://192.168.0.21:8080/GerenciarEventoWebService/api/evento";
-        client.post(URL, params, new AsyncHttpResponseHandler() {
+        String URL = "http://10.10.164.223:8080/GerenciarEventoWebService/api/evento";
+        client.post(URL, dado, new AsyncHttpResponseHandler() {
 
             @Override
             public void onStart() {
@@ -100,7 +88,6 @@ public class MainControl {
             @Override
             public void onRetry(int retryNo) {
                 super.onRetry(retryNo);
-
 
             }
 

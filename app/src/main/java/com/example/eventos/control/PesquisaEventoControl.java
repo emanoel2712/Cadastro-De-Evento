@@ -66,7 +66,8 @@ public class PesquisaEventoControl {
 //
     public void carregarEventos() {
         AsyncHttpClient client = new AsyncHttpClient();
-        String URL = "http://192.168.0.21:8080/GerenciarEventoWebService/api/evento";
+//        String URL = "http://192.168.0.21:8080/GerenciarEventoWebService/api/evento";
+        String URL = "http://10.10.164.223:8080/GerenciarEventoWebService/api/evento";
         client.get(URL, new AsyncHttpResponseHandler() {
             @Override
             public void onStart() {
