@@ -51,11 +51,9 @@ public class PesquisaEventoControl {
 
         eventoDao = new EventoDao(activity);
 
-        evento = (Evento) activity.getIntent().getSerializableExtra(Constantes.PARAM_EVENTO);
-
         initComponents();
 
-        carregarEventos();
+
     }
 
     private void initComponents() {
@@ -117,7 +115,6 @@ public class PesquisaEventoControl {
 
 
     public void configListViewEvento() {
-//        listComanda = new ArrayList<>();
 
         try {
             listEvento = eventoDao.getDao().queryForAll();
